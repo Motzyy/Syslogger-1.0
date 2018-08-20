@@ -1,15 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Net.Http;
 using InfluxData.Net.InfluxDb.Models;
 using InfluxData.Net.InfluxDb;
 using InfluxData.Net.Common.Enums;
-using System.Threading;
 
-namespace syslogWrite
+namespace Syslogger
 {
     /// <summary>
     /// Dient dazu sich mit einer DB zu verbinden,
@@ -49,6 +44,7 @@ namespace syslogWrite
         /// <param name="severitylevel">Einstufung der Priorität</param>
         /// <param name="facilitycode">Code des Ursprungs</param>
         /// <param name="message">Nachricht</param>
+        /// <param name="procid">Prozess ID</param>
         public void CreateMessage(string Appname,  string Host, string Hostname, int severitylevel, int facilitycode, string message, string procid)
         {
             string severity = DetermineSerevity(severitylevel);

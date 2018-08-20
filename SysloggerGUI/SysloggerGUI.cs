@@ -1,14 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using syslogWrite;
 
 namespace SysloggerGUI
 {
@@ -17,7 +9,7 @@ namespace SysloggerGUI
     /// </summary>
     public partial class SysloggerGUI : Form
     {
-        public Syslogger syslogger;
+        public Syslogger.Syslogger syslogger;
 
         /// <summary>
         /// Initialiseren der Komponenten und Klassen
@@ -27,7 +19,7 @@ namespace SysloggerGUI
         {
             InitializeComponent();
             CheckEnableButton();
-            syslogger = new Syslogger();
+            syslogger = new Syslogger.Syslogger();
 
             backgroundWorker1.DoWork += backgroundWorker1_DoWork;
             backgroundWorker1.ProgressChanged += backgroundWorker1_ProgressChanged;
@@ -41,7 +33,7 @@ namespace SysloggerGUI
         /// entschieden ob ein einzelner Log, eine Reihe von Logs oder
         /// dauerhaft Logs versendet werden
         /// </summary>
-        private void button3_Click(object sender, EventArgs e)
+        public void button3_Click(object sender, EventArgs e)
         {
             buttonCancel.Enabled = true;
             button3.Enabled = false;
@@ -66,7 +58,7 @@ namespace SysloggerGUI
         /// Nebenbei wird der Prozessfortschritt an eine ProgressBar gesendet
         /// damit man sieht wie weit der Prozess vorangeschritten ist
         /// </summary>
-        private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        public void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
             if (checkBoxPerm.Checked == false)
             {
@@ -108,7 +100,7 @@ namespace SysloggerGUI
         /// <summary>
         /// Der übermittelte Wert des Fortschritts wird der ProgressBar zugeordnet
         /// </summary>
-        private void backgroundWorker1_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
+        public void backgroundWorker1_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
         {
             progressBar1.Value = e.ProgressPercentage;
         }
@@ -118,7 +110,7 @@ namespace SysloggerGUI
         /// wieder freigegeben damit ein neuer Prozess gestartet werden
         /// kann
         /// </summary>
-        private void backgroundWorker1_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+        public void backgroundWorker1_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
             buttonCancel.Enabled = false;
             button3.Enabled = true;
@@ -130,7 +122,7 @@ namespace SysloggerGUI
         /// Inhalt steht
         /// </summary>
         #region Update Send Button
-        private void CheckEnableButton()
+        public void CheckEnableButton()
         {
             if (textBoxAppname.TextLength > 0 && textBoxFacility.TextLength > 0 && textBoxHost.TextLength > 0 && textBoxHostname.TextLength > 0 && textBoxMessage.TextLength > 0 && textBoxAdresseDB.TextLength > 0 && textBoxNameDB.TextLength > 0)
                 button3.Enabled = true;
@@ -138,37 +130,37 @@ namespace SysloggerGUI
                 button3.Enabled = false;
         }
 
-        private void textBoxAppname_TextChanged(object sender, EventArgs e)
+        public void textBoxAppname_TextChanged(object sender, EventArgs e)
         {
             CheckEnableButton();
         }
 
-        private void textBoxFacility_TextChanged(object sender, EventArgs e)
+        public void textBoxFacility_TextChanged(object sender, EventArgs e)
         {
             CheckEnableButton();
         }
 
-        private void textBoxHost_TextChanged(object sender, EventArgs e)
+        public void textBoxHost_TextChanged(object sender, EventArgs e)
         {
             CheckEnableButton();
         }
 
-        private void textBoxHostname_TextChanged(object sender, EventArgs e)
+        public void textBoxHostname_TextChanged(object sender, EventArgs e)
         {
             CheckEnableButton();
         }
 
-        private void textBoxMessage_TextChanged(object sender, EventArgs e)
+        public void textBoxMessage_TextChanged(object sender, EventArgs e)
         {
             CheckEnableButton();
         }
 
-        private void textBoxNameDB_TextChanged(object sender, EventArgs e)
+        public void textBoxNameDB_TextChanged(object sender, EventArgs e)
         {
             CheckEnableButton();
         }
 
-        private void textBoxAdresseDB_TextChanged(object sender, EventArgs e)
+        public void textBoxAdresseDB_TextChanged(object sender, EventArgs e)
         {
             CheckEnableButton();
         }
@@ -179,12 +171,12 @@ namespace SysloggerGUI
         /// sodass nur noch die Felder aktiv sind, die auch den Log beeinflussen
         /// </summary>
         #region Update Interface
-        private void numericUpDownSeverity_ValueChanged(object sender, EventArgs e)
+        public void numericUpDownSeverity_ValueChanged(object sender, EventArgs e)
         {
             labelSeverity.Text = syslogger.DetermineSerevity((int)numericUpDownSeverity.Value);
         }
 
-        private void numericUpDownFacility_ValueChanged(object sender, EventArgs e)
+        public void numericUpDownFacility_ValueChanged(object sender, EventArgs e)
         {
             labelFacility.Text = syslogger.DetermineFacilty((int)numericUpDownFacility.Value);
             
@@ -196,7 +188,7 @@ namespace SysloggerGUI
         textBoxFacility.Text = labelFacility.Text;
         }
 
-        private void checkBoxAuto_CheckedChanged(object sender, EventArgs e)
+        public void checkBoxAuto_CheckedChanged(object sender, EventArgs e)
         {
             if(checkBoxAuto.Checked == true)
             {
@@ -207,7 +199,6 @@ namespace SysloggerGUI
                 numericUpDownCount.Visible = true;
                 textBoxAppname.Enabled = false;
                 textBoxHostname.Enabled = false;
-                textBoxFacility.Enabled = false;
                 textBoxMessage.Enabled = false;
                 progressBar1.Visible = true;
                 numericUpDownFacility.Enabled = false;
@@ -222,7 +213,6 @@ namespace SysloggerGUI
                 numericUpDownCount.Visible = false;
                 textBoxAppname.Enabled = true;
                 textBoxHostname.Enabled = true;
-                textBoxFacility.Enabled = true;
                 textBoxMessage.Enabled = true;
                 progressBar1.Visible = false;
                 numericUpDownFacility.Enabled = true;
@@ -230,7 +220,7 @@ namespace SysloggerGUI
             }
         }
 
-        private void checkBoxPerm_CheckedChanged(object sender, EventArgs e)
+        public void checkBoxPerm_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBoxPerm.Checked == true)
             {
@@ -251,7 +241,7 @@ namespace SysloggerGUI
         /// Startet nach Bestätigen der MessageBox den 
         /// Vorgang zum Löschen einer Logreihe
         /// </summary>
-        private void buttonDelete_Click(object sender, EventArgs e)
+        public void buttonDelete_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Wollen Sie das wirklich unwiderruflich löschen?", "Löschen einer Messreihe",
          MessageBoxButtons.YesNo, MessageBoxIcon.Question)
@@ -267,7 +257,7 @@ namespace SysloggerGUI
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void buttonCancel_Click(object sender, EventArgs e)
+        public void buttonCancel_Click(object sender, EventArgs e)
         {
             if (backgroundWorker1.IsBusy)
             {
@@ -278,22 +268,22 @@ namespace SysloggerGUI
 
 
         #region Nicht genutzte Funktionen
-        private void labelInterval_Click(object sender, EventArgs e)
+        public void labelInterval_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void labelCount_Click(object sender, EventArgs e)
+        public void labelCount_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void numericUpDownCount_ValueChanged(object sender, EventArgs e)
+        public void numericUpDownCount_ValueChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void numericUpDownInterval_ValueChanged(object sender, EventArgs e)
+        public void numericUpDownInterval_ValueChanged(object sender, EventArgs e)
         {
 
         }

@@ -87,7 +87,6 @@
             this.label1.Size = new System.Drawing.Size(68, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Appname";
-            this.toolTip1.SetToolTip(this.label1, "Name der App");
             // 
             // label2
             // 
@@ -124,6 +123,7 @@
             this.label5.Size = new System.Drawing.Size(97, 17);
             this.label5.TabIndex = 4;
             this.label5.Text = "Severity Level";
+            this.toolTip1.SetToolTip(this.label5, "Einstufungsgrad (Bereich: 0-7)");
             // 
             // label6
             // 
@@ -133,6 +133,7 @@
             this.label6.Size = new System.Drawing.Size(88, 17);
             this.label6.TabIndex = 5;
             this.label6.Text = "Facility Code";
+            this.toolTip1.SetToolTip(this.label6, "Auswahl des Ursprungs (Bereich: 0-23)");
             // 
             // label7
             // 
@@ -154,6 +155,7 @@
             // 
             // textBoxFacility
             // 
+            this.textBoxFacility.Enabled = false;
             this.textBoxFacility.Location = new System.Drawing.Point(169, 142);
             this.textBoxFacility.Name = "textBoxFacility";
             this.textBoxFacility.ReadOnly = true;
@@ -500,6 +502,7 @@
             this.label17.Size = new System.Drawing.Size(54, 17);
             this.label17.TabIndex = 44;
             this.label17.Text = "ProcID.";
+            this.toolTip1.SetToolTip(this.label17, "Prozess ID");
             // 
             // textBoxProc
             // 

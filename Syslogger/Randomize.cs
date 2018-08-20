@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace syslogWrite
+namespace Syslogger
 {
     /// <summary>
     /// Die Klasse dient dazu zufallsgenerierte
@@ -16,7 +12,13 @@ namespace syslogWrite
         private Random rnd;
         private int Value1;
         private int Value2;
+        /// <summary>
+        /// Zufallswert für Severity Level
+        /// </summary>
         public int ValueSev;
+        /// <summary>
+        /// Zufallswert für Facility Code
+        /// </summary>
         public int ValueFac;
 
         /// <summary>
@@ -24,7 +26,7 @@ namespace syslogWrite
         /// welcher dafür sorgt, dass wir garantiert zufällige
         /// Werte erhalten
         /// </summary>
-        /// <param name="seed">Sorgt für garantiert zufällige Werte</param>
+        /// <param name="seed">Sorgt für garantiert zufällige Werte</param> 
         public Randomize(int seed)
         {
             rnd = new Random(seed);
