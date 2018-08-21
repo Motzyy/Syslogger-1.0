@@ -1,5 +1,5 @@
 # Syslogger-1.0
-Das Programm dient dazu Lognachrichtne im syslog Standard in eine InfluxDB zu schreiben.
+Das Programm dient dazu Lognachrichten im syslog Standard in eine InfluxDB zu schreiben.
 Man kann hierbei zwischen drei Modi unterscheiden: Einzeln, automatischer und dauerhafter Modus.
 
 ## Getting Started
