@@ -7,6 +7,7 @@ Man kann hierbei zwischen drei Modi unterscheiden: Einzeln, automatischer und da
 Das Projekt kann in Visual Studio kompiliert werden. Vorraussetzung ist hierfür:
 * [InfluxData.Net](https://github.com/pootzko/InfluxData.Net#api-reference) - Die verwendete .NET Bibliothek für InfluxDB
 * [System.Net.Http](https://www.nuget.org/packages/System.Net.Http/) - Die verwendete HTTP Bibliothek
+* [Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json) - Die verwendete Json Bibliothek
 
 ## Senden von Logs
 ### Senden einzelner Logs
